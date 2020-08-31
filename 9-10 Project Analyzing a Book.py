@@ -24,15 +24,15 @@ with open('some book.txt', 'r', encoding='utf-8') as book:
             if '-' in word:
                 words_with_hyphens = word.split('-')
                 for word in words_with_hyphens:
-                    words.append(word)
+                    words.append(word.lower())
                 
             elif '—' in word:
                 words_with_hyphens = word.split('—')
                 for word in words_with_hyphens:
-                    words.append(word)
+                    words.append(word.lower())
                 
             else:
-                words.append(word)
+                words.append(word.lower())
                 
 for word in words:    
     word_count += 1
