@@ -1,0 +1,42 @@
+words = []
+counts = dict()      
+
+with open('Pride and Prejudice.txt', 'r', encoding='utf-8') as book:
+    
+    for line in book:
+        for word in line.split():          
+                    
+            if word[-1] in '”':
+                word = word[:-1]
+                
+            if word[-1] in [',', ';', '.', '?', '!']:
+                word = word[:-1]   
+                
+            if '-' in word:
+                words_with_hyphens = word.split('-')
+                for word in words_with_hyphens:
+                    words.append(word.lower())
+                
+            elif '—' in word:
+                words_with_hyphens = word.split('—')
+                for word in words_with_hyphens:
+                    words.append(word.lower())
+                
+            else:
+                words.append(word.lower())
+
+                
+for word in words:     
+    if word in counts:
+        counts[word] += 1
+    else:
+        counts[word] = 1      
+            
+
+counts = {k: v for k, v in reversed(sorted(counts.items(), key=lambda item: item[1]))}
+frequencies = dict(list(counts.items())[:200])
+
+from wordcloud import WordCloud
+wordcloud = WordCloud(colormap='prism', background_color='white')
+wordcloud = wordcloud.fit_words(frequencies)
+wordcloud = wordcloud.to_file('PrideAndPrejudice.png')
