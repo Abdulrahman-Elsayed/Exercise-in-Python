@@ -4,7 +4,7 @@ char_count = 0
 sentence_count = 0
 max_words = ['', '', '', '', '', '', '', '', '', '']
 
-with open('Pride and Prejudice.txt', 'r', encoding='utf-8') as book:
+with open('some book.txt', 'r', encoding='utf-8') as book:
     
     for line in book:
         for word in line.split():
