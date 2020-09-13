@@ -1,0 +1,50 @@
+# 10.9 (Square Class)
+""""""
+
+class Invoice():
+    """"""
+
+    def __init__(self, part_number, part_description, quantity, price):
+        self.part_number = part_number
+        self.part_description = part_description
+        self.quantity = quantity
+        self.price = price
+
+    @property
+    def part_number(self):
+        return self._part_number
+
+    @part_number.setter
+    def part_number(self, part_number):
+        self._part_number = part_number
+
+    @property
+    def part_description(self):
+        return self._part_description
+
+    @part_description.setter
+    def part_description(self, part_description):
+        self._part_description = part_description
+
+    @property
+    def quantity(self):
+        return self._quantity
+
+    @quantity.setter
+    def quantity(self, quantity):
+        if not (quantity >= 0):
+            raise ValueError('quantity must be non-negative.')
+        self._quantity = quantity
+
+    @property
+    def price(self):
+        return self._part_number
+
+    @price.setter
+    def price(self, price):
+        if not (price >= 0):
+            raise ValueError('price must be non-negative.')
+        self._price = price    
+
+    def calculate_invoice(self):
+        return self.price * self.quantity
