@@ -1,0 +1,63 @@
+# 10.9 (Square Class)
+""""""
+
+class Fraction():
+    """"""
+
+    def __init__(self, numerator=1, denominator=1):
+        self.numerator = numerator
+        self.denominator = denominator
+
+    @property
+    def numerator(self):
+        return self._numerator
+
+    @numerator.setter
+    def numerator(self, numerator):
+        self._numerator = numerator
+
+    @property
+    def denominator(self):
+        return self._denominator
+
+    @denominator.setter
+    def denominator(self, denominator):
+        self._denominator = denominator    
+
+    def _gcd(self, a, b): 
+        if(b == 0): 
+            return a 
+        else: 
+            return self._gcd(b, a % b) 
+
+    def reduced(self):
+        gcd = self._gcd(self.numerator, self.denominator)
+        self.numerator //= gcd 
+        self.denominator //= gcd 
+
+    def __add__(self, right):
+        return (Fraction(self.numerator * right.denominator + 
+                right.numerator * self.denominator, 
+                self.denominator * right.denominator))
+
+    def __sub__(self, right):
+        return (Fraction(self.numerator * right.denominator - 
+                right.numerator * self.denominator, 
+                self.denominator * right.denominator))
+
+    def __mul__(self, right):
+        return (Fraction(self.numerator * right.numerator, 
+                self.denominator * right.denominator))
+    
+    def __floordiv__(self, right):
+        return (Fraction(self.numerator // right.numerator, 
+                self.denominator // right.denominator))           
+
+    def __float__(self):
+        return self.numerator / self.denominator
+
+    def __str__(self):
+        return f'{self.numerator }/{self.denominator}'
+
+    def __repr__(self):
+        return f"Fraction(numerator='{self.numerator}', denominator='{self.denominator}')"
